@@ -2,12 +2,14 @@ const getState = ({ getStore, getActions, setStore }) => {
     return {
         store: {
             people: [],
-            peopleInfo: {}
+            peopleInfo: {},
+            planets: [],
+            planetsInfo: {}
         },
         actions: {
             getPeople: async () => {
                 try {
-                    const resp = await fetch("https://www.swapi.tech/api/people?page=1&limit=82", {
+                    const resp = await fetch("https://www.swapi.tech/api/people?page=1&limit=12", {
                         method: "GET",
                         headers: {
                             "Content-type": "application/json"
@@ -35,6 +37,40 @@ const getState = ({ getStore, getActions, setStore }) => {
                     }
                     let data = await resp.json();
                     setStore({ peopleInfo: { ...getStore().peopleInfo, [id]: data.result.properties } });
+                } catch (error) {
+                    console.error("Error");
+                }
+            },
+            getPlanets: async () => {
+                try {
+                    const resp = await fetch("https://www.swapi.tech/api/planets?page=2&limit=6", {
+                        method: "GET",
+                        headers: {
+                            "Content-type": "application/json"
+                        }
+                    });
+                    if (!resp.ok) {
+                        throw new Error(`error status: ${resp.status}`);
+                    }
+                    let data = await resp.json();
+                    setStore({ planets: data.results });
+                } catch (error) {
+                    console.error("Error");
+                }
+            },
+            getPlanetsInfo: async (id) => {
+                try {
+                    const resp = await fetch(`https://www.swapi.tech/api/planets/${id}`, {
+                        method: "GET",
+                        headers: {
+                            "Content-type": "application/json"
+                        }
+                    });
+                    if (!resp.ok) {
+                        throw new Error(`error status: ${resp.status}`);
+                    }
+                    let data = await resp.json();
+                    setStore({ planetsInfo: { ...getStore().planetsInfo, [id]: data.result.properties } });
                 } catch (error) {
                     console.error("Error");
                 }
