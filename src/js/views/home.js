@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Card } from "../component/Card";
+import { Card } from "../component/CardForCharacters";
 import { Context } from "../store/appContext";
 import "../../styles/home.css";
 
