@@ -4,7 +4,9 @@ const getState = ({ getStore, getActions, setStore }) => {
             people: [],
             peopleInfo: {},
             planets: [],
-            planetsInfo: {}
+            planetsInfo: {},
+            vehicles: [],
+            vehiclesInfo: {}
         },
         actions: {
             getPeople: async () => {
@@ -71,6 +73,40 @@ const getState = ({ getStore, getActions, setStore }) => {
                     }
                     let data = await resp.json();
                     setStore({ planetsInfo: { ...getStore().planetsInfo, [id]: data.result.properties } });
+                } catch (error) {
+                    console.error("Error");
+                }
+            },
+            getVehicles: async () => {
+                try {
+                    const resp = await fetch("https://www.swapi.tech/api/vehicles?page=1&limit=10", {
+                        method: "GET",
+                        headers: {
+                            "Content-type": "application/json"
+                        }
+                    });
+                    if (!resp.ok) {
+                        throw new Error(`error status: ${resp.status}`);
+                    }
+                    let data = await resp.json();
+                    setStore({ vehicles: data.results });
+                } catch (error) {
+                    console.error("Error");
+                }
+            },
+            getVehiclesInfo: async (id) => {
+                try {
+                    const resp = await fetch(`https://www.swapi.tech/api/vehicles/${id}`, {
+                        method: "GET",
+                        headers: {
+                            "Content-type": "application/json"
+                        }
+                    });
+                    if (!resp.ok) {
+                        throw new Error(`error status: ${resp.status}`);
+                    }
+                    let data = await resp.json();
+                    setStore({ vehiclesInfo: { ...getStore().vehiclesInfo, [id]: data.result.properties } });
                 } catch (error) {
                     console.error("Error");
                 }

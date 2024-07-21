@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Card } from "../component/CardForCharacters";
 import { CardForPlanets } from "../component/CardForPlanets";
+import { CardForVehicles } from "../component/CardForVehicles";
 import { Context } from "../store/appContext";
 import "../../styles/home.css";
 
@@ -13,6 +14,10 @@ export const Home = () => {
 
     const eachPlanet = store.planets.map((planet, index) => (
         <CardForPlanets key={index} planet={planet} />
+    ));
+
+    const eachVehicle = store.vehicles.map((vehicle, index) => (
+        <CardForVehicles key={index} vehicle={vehicle} />
     ));
 
     return (
@@ -32,7 +37,7 @@ export const Home = () => {
             <div className="m-5">
                 <h1>Vehicles</h1>
                 <div className="scrollmenu d-flex">
-                    {/* {eachVehicle} */}
+                    {eachVehicle}
                 </div>
             </div>
         </>
