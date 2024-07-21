@@ -23,7 +23,6 @@ export const CardForVehicles = (props) => {
                 {details ? (
                     <>
                         <p className="card-text">Model: {details.model}</p>
-                        <p className="card-text">Manufacturer: {details.manufacturer}</p>
                         <p className="card-text">Cost: {details.cost_in_credits}</p>
                     </>
                 ) : (

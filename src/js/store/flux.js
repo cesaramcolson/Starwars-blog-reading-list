@@ -11,7 +11,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         actions: {
             getPeople: async () => {
                 try {
-                    const resp = await fetch("https://www.swapi.tech/api/people?page=1&limit=12", {
+                    const resp = await fetch("https://www.swapi.tech/api/people?page=1&limit=20", {
                         method: "GET",
                         headers: {
                             "Content-type": "application/json"
@@ -79,7 +79,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             },
             getVehicles: async () => {
                 try {
-                    const resp = await fetch("https://www.swapi.tech/api/vehicles?page=1&limit=10", {
+                    const resp = await fetch("https://www.swapi.tech/api/vehicles?page=1&limit=15", {
                         method: "GET",
                         headers: {
                             "Content-type": "application/json"
