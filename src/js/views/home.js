@@ -1,14 +1,10 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { Card } from "../component/Card";
 import { Context } from "../store/appContext";
 import "../../styles/home.css";
 
 export const Home = () => {
-    const { store, actions } = useContext(Context);
-
-    useEffect(() => {
-        actions.getPeople();
-    }, []);
+    const { store } = useContext(Context);
 
     const eachCharacter = store.people.map((people, index) => (
         <Card key={index} people={people} />
