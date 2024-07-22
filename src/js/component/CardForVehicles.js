@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 export const CardForVehicles = (props) => {
     const { actions, store } = useContext(Context);
     const [details, setDetails] = useState(null);
+    const [isFavorite, setIsFavorite] = useState(false);
 
     useEffect(() => {
         const fetchDetails = async () => {
@@ -14,6 +15,19 @@ export const CardForVehicles = (props) => {
 
         fetchDetails();
     }, [props.vehicle.uid, store.vehiclesInfo]);
+
+    useEffect(() => {
+        setIsFavorite(store.favorites.some(fav => fav.name === props.vehicle.name));
+    }, [store.favorites, props.vehicle.name]);
+
+    const handleFavoriteClick = () => {
+        if (isFavorite) {
+            actions.removeFavorite(props.vehicle.name);
+        } else {
+            actions.addFavorite(props.vehicle.name, `/details/${props.vehicle.uid}`);
+        }
+        setIsFavorite(!isFavorite);
+    };
 
     return (
         <div className="card col-12 col-md m-3" style={{ minWidth: "300px" }}>
@@ -29,9 +43,12 @@ export const CardForVehicles = (props) => {
                     <p>Loading...</p>
                 )}
                 <div className="d-flex justify-content-between align-items-center">
-                    <Link to={`/details/${props.vehicle.uid}`} className="btn btn-primary">Learn more!</Link>
-                    <button className="btn btn-warning" onClick={() => actions.addFavorite(props.vehicle.name, `/details/${props.vehicle.uid}`)}>
-                        <i className="fa-regular fa-heart"></i>
+                    <Link to={`/details/vehicle/${props.vehicle.uid}`} className="btn btn-primary">Learn more!</Link>
+                    <button 
+                        className={`btn ${isFavorite ? 'btn-outline-warning' : 'btn-warning'}`} 
+                        onClick={handleFavoriteClick}
+                    >
+                        <i className={isFavorite ? 'fa-solid fa-heart' : 'fa-regular fa-heart'}></i>
                     </button>
                 </div>
             </div>

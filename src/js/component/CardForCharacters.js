@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 export const Card = (props) => {
     const { actions, store } = useContext(Context);
     const [details, setDetails] = useState(null);
+    const [isFavorite, setIsFavorite] = useState(false);
 
     useEffect(() => {
         const fetchDetails = async () => {
@@ -14,6 +15,19 @@ export const Card = (props) => {
 
         fetchDetails();
     }, [props.people.uid, store.peopleInfo]);
+
+    useEffect(() => {
+        setIsFavorite(store.favorites.some(fav => fav.name === props.people.name));
+    }, [store.favorites, props.people.name]);
+
+    const handleFavoriteClick = () => {
+        if (isFavorite) {
+            actions.removeFavorite(props.people.name);
+        } else {
+            actions.addFavorite(props.people.name, `/details/${props.people.uid}`);
+        }
+        setIsFavorite(!isFavorite);
+    };
 
     return (
         <div className="card col-12 col-md m-3" style={{ minWidth: "300px" }}>
@@ -31,8 +45,11 @@ export const Card = (props) => {
                 )}
                 <div className="d-flex justify-content-between align-items-center">
                     <Link to={`/details/${props.people.uid}`} className="btn btn-primary">Learn more!</Link>
-                    <button className="btn btn-warning" onClick={() => actions.addFavorite(props.people.name, `/details/${props.people.uid}`)}>
-                        <i className="fa-regular fa-heart"></i>
+                    <button 
+                        className={`btn ${isFavorite ? 'btn-outline-warning' : 'btn-warning'}`} 
+                        onClick={handleFavoriteClick}
+                    >
+                        <i className={isFavorite ? 'fa-solid fa-heart' : 'fa-regular fa-heart'}></i>
                     </button>
                 </div>
             </div>
