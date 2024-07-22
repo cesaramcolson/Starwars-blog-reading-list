@@ -24,7 +24,7 @@ export const CardForPlanets = (props) => {
         if (isFavorite) {
             actions.removeFavorite(props.planet.name);
         } else {
-            actions.addFavorite(props.planet.name, `/details/${props.planet.uid}`);
+            actions.addFavorite('planet', props.planet.uid, props.planet.name);
         }
         setIsFavorite(!isFavorite);
     };

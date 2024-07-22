@@ -112,10 +112,11 @@ const getState = ({ getStore, getActions, setStore }) => {
                     console.error("Error");
                 }
             },
-            addFavorite: (name, url) => {
+            addFavorite: (type, id, name) => {
                 const store = getStore();
+                const url = `/details/${type}/${id}`;
                 if (!store.favorites.find(fav => fav.name === name)) {
-                    setStore({ favorites: [...store.favorites, { name, url }] });
+                    setStore({ favorites: [...store.favorites, { type, id, name, url }] });
                 }
             },
             removeFavorite: (name) => {

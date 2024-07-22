@@ -24,7 +24,7 @@ export const Card = (props) => {
         if (isFavorite) {
             actions.removeFavorite(props.people.name);
         } else {
-            actions.addFavorite(props.people.name, `/details/${props.people.uid}`);
+            actions.addFavorite('character', props.people.uid, props.people.name);
         }
         setIsFavorite(!isFavorite);
     };

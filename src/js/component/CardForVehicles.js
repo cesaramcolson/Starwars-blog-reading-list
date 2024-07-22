@@ -24,7 +24,7 @@ export const CardForVehicles = (props) => {
         if (isFavorite) {
             actions.removeFavorite(props.vehicle.name);
         } else {
-            actions.addFavorite(props.vehicle.name, `/details/${props.vehicle.uid}`);
+            actions.addFavorite('vehicle', props.vehicle.uid, props.vehicle.name);
         }
         setIsFavorite(!isFavorite);
     };
