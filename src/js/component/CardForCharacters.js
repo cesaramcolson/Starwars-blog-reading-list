@@ -44,7 +44,7 @@ export const Card = (props) => {
                     <p>Loading...</p>
                 )}
                 <div className="d-flex justify-content-between align-items-center">
-                    <Link to={`/details/character/${props.people.uid}`} className="btn btn-primary">Learn more!</Link>
+                    <Link to={`/details/character/${props.people.uid}`} className="btn btn-dark">Learn more!</Link>
                     <button 
                         className={`btn ${isFavorite ? 'btn-outline-warning' : 'btn-warning'}`} 
                         onClick={handleFavoriteClick}

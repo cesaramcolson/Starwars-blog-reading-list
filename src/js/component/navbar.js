@@ -19,8 +19,8 @@ export const Navbar = () => {
             </div>
             <div className="mx-5">
                 <div className="dropdown">
-                    <button className="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                        Favorites <span className="badge bg-secondary">{store.favorites.length}</span>
+                    <button className="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                        Favorites <span className="badge bg-dark">{store.favorites.length}</span>
                     </button>
                     <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         {store.favorites.length > 0 ? (
