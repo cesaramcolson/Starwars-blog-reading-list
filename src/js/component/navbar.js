@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { Context } from "../store/appContext";
 
 export const Navbar = () => {
+    const { store, actions } = useContext(Context);
+
     return (
         <nav className="navbar navbar-light bg-light mb-3">
             <div>
@@ -14,8 +17,26 @@ export const Navbar = () => {
                     />
                 </Link>
             </div>
-            <div className="ml-auto">
-                {/* Here we need a dropdown menu to add favorites */}
+            <div className="mx-5">
+                <div className="dropdown">
+                    <button className="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                        Favorites <span className="badge bg-secondary">{store.favorites.length}</span>
+                    </button>
+                    <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        {store.favorites.length > 0 ? (
+                            store.favorites.map((item, index) => (
+                                <li key={index} className="dropdown-item d-flex justify-content-between align-items-center">
+                                    <Link to={item.url}>{item.name}</Link>
+                                    <button className="btn btn-outline-danger btn-sm" onClick={() => actions.removeFavorite(item.name)}>
+                                        <i className="fa fa-trash"></i>
+                                    </button>
+                                </li>
+                            ))
+                        ) : (
+                            <li className="dropdown-item">No favorites added</li>
+                        )}
+                    </ul>
+                </div>
             </div>
         </nav>
     );

@@ -6,7 +6,8 @@ const getState = ({ getStore, getActions, setStore }) => {
             planets: [],
             planetsInfo: {},
             vehicles: [],
-            vehiclesInfo: {}
+            vehiclesInfo: {},
+            favorites: []
         },
         actions: {
             getPeople: async () => {
@@ -110,6 +111,16 @@ const getState = ({ getStore, getActions, setStore }) => {
                 } catch (error) {
                     console.error("Error");
                 }
+            },
+            addFavorite: (name, url) => {
+                const store = getStore();
+                if (!store.favorites.find(fav => fav.name === name)) {
+                    setStore({ favorites: [...store.favorites, { name, url }] });
+                }
+            },
+            removeFavorite: (name) => {
+                const store = getStore();
+                setStore({ favorites: store.favorites.filter(fav => fav.name !== name) });
             }
         }
     };

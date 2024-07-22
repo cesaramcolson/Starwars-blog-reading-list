@@ -23,14 +23,16 @@ export const CardForVehicles = (props) => {
                 {details ? (
                     <>
                         <p className="card-text">Model: {details.model}</p>
-                        <p className="card-text">Cost: {details.cost_in_credits}</p>
+                        <p className="card-text">Length: {details.length}</p>
                     </>
                 ) : (
                     <p>Loading...</p>
                 )}
                 <div className="d-flex justify-content-between align-items-center">
-                    <Link to={`/details/vehicle/${props.vehicle.uid}`} className="btn btn-primary">Learn more!</Link>
-                    <a href="#" className="btn btn-warning"><i className="fa-regular fa-heart"></i></a>
+                    <Link to={`/details/${props.vehicle.uid}`} className="btn btn-primary">Learn more!</Link>
+                    <button className="btn btn-warning" onClick={() => actions.addFavorite(props.vehicle.name, `/details/${props.vehicle.uid}`)}>
+                        <i className="fa-regular fa-heart"></i>
+                    </button>
                 </div>
             </div>
         </div>

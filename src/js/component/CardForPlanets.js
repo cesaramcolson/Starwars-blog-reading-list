@@ -24,14 +24,16 @@ export const CardForPlanets = (props) => {
                     <>
                         <p className="card-text">Climate: {details.climate}</p>
                         <p className="card-text">Diameter: {details.diameter}</p>
-                        <p className="card-text">Population: {details.population}</p>
+                        <p className="card-text">Gravity: {details.gravity}</p>
                     </>
                 ) : (
                     <p>Loading...</p>
                 )}
                 <div className="d-flex justify-content-between align-items-center">
-                    <Link to={`/details/planet/${props.planet.uid}`} className="btn btn-primary">Learn more!</Link>
-                    <a href="#" className="btn btn-warning"><i className="fa-regular fa-heart"></i></a>
+                    <Link to={`/details/${props.planet.uid}`} className="btn btn-primary">Learn more!</Link>
+                    <button className="btn btn-warning" onClick={() => actions.addFavorite(props.planet.name, `/details/${props.planet.uid}`)}>
+                        <i className="fa-regular fa-heart"></i>
+                    </button>
                 </div>
             </div>
         </div>

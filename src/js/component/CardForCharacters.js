@@ -31,7 +31,9 @@ export const Card = (props) => {
                 )}
                 <div className="d-flex justify-content-between align-items-center">
                     <Link to={`/details/${props.people.uid}`} className="btn btn-primary">Learn more!</Link>
-                    <a href="#" className="btn btn-warning"><i className="fa-regular fa-heart"></i></a>
+                    <button className="btn btn-warning" onClick={() => actions.addFavorite(props.people.name, `/details/${props.people.uid}`)}>
+                        <i className="fa-regular fa-heart"></i>
+                    </button>
                 </div>
             </div>
         </div>
