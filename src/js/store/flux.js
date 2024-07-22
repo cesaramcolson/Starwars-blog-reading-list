@@ -14,7 +14,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                 const store = getStore();
                 if (store.people.length === 0) {
                     try {
-                        const resp = await fetch("https://www.swapi.tech/api/people?page=1&limit=82", {
+                        const resp = await fetch("https://www.swapi.tech/api/people?page=1&limit=83", {
                             method: "GET",
                             headers: {
                                 "Content-type": "application/json"
@@ -56,7 +56,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                 const store = getStore();
                 if (store.planets.length === 0) {
                     try {
-                        const resp = await fetch("https://www.swapi.tech/api/planets?page=2&limit=6", {
+                        const resp = await fetch("https://www.swapi.tech/api/planets?page=1&limit=60", {
                             method: "GET",
                             headers: {
                                 "Content-type": "application/json"
@@ -98,7 +98,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                 const store = getStore();
                 if (store.vehicles.length === 0) {
                     try {
-                        const resp = await fetch("https://www.swapi.tech/api/vehicles?page=1&limit=60", {
+                        const resp = await fetch("https://www.swapi.tech/api/vehicles?page=1&limit=76", {
                             method: "GET",
                             headers: {
                                 "Content-type": "application/json"

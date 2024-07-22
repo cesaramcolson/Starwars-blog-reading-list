@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
+import ImageWithFallback from "./ImageWithFallback";
 
 export const CardForPlanets = (props) => {
     const { actions, store } = useContext(Context);
@@ -31,7 +32,13 @@ export const CardForPlanets = (props) => {
 
     return (
         <div className="card col-12 col-md m-3" style={{ minWidth: "300px" }}>
-            <img src={`https://starwars-visualguide.com/assets/img/planets/${props.planet.uid}.jpg`} className="card-img-top" alt="Card image" />
+            <ImageWithFallback 
+                src={`https://starwars-visualguide.com/assets/img/planets/${props.planet.uid}.jpg`} 
+                fallbackSrc="https://placehold.co/300"
+                alt="Card image" 
+                width={300}
+                height={300}
+            />
             <div className="card-body">
                 <h5 className="card-title">{props.planet.name}</h5>
                 {details ? (
