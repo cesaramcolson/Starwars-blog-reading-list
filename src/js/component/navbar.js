@@ -46,6 +46,11 @@ export const Navbar = () => {
         </div>
     );
 
+    const clearInput = () => {
+        setValue('');
+        setSuggestions([]);
+    };
+
     const inputProps = {
         placeholder: 'Search characters, planets, vehicles...',
         value,
@@ -77,6 +82,11 @@ export const Navbar = () => {
                         onSuggestionSelected={onSuggestionSelected}
                         inputProps={inputProps}
                     />
+                    {value && (
+                        <button className="clear-button" onClick={clearInput}>
+                            &times;
+                        </button>
+                    )}
                 </div>
                 <div className="dropdown">
                     <button className="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
